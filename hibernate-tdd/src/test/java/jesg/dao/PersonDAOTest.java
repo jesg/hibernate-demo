@@ -18,19 +18,32 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @ContextConfiguration(locations="classpath:META-INF/spring/application-context.xml")
 @TransactionConfiguration
 public class PersonDAOTest {
+	private String firstName = "Markus";
+	private String lastName = "Persson";
+	private Person person;
 	
 	@Inject
 	private PersonDAO personDAO;
 
+	@Before
+	public void setUp(){
+		person = new Person();
+		person.setFirstName(firstName);
+		person.setLastName(lastName);	
+	}
+	
 	@Test
 	public void canCreateAndFindPerson() {
-		Person person = new Person();
-		person.setFirstName("Markus");
-		person.setLastName("Persson");
 		
 		personDAO.create(person);
-		person = personDAO.findByName("Markus", "Persson");
-		System.out.println(person);
+		person = personDAO.findByName(firstName, lastName);
+		assertNotNull(person);
+		assertEquals(firstName, person.getFirstName());
+		assertEquals(lastName, person.getLastName());
+		
+		personDAO.delete(person);
+		person = personDAO.findByName(firstName, lastName);
+		assertNull(person);
 	}
 
 }

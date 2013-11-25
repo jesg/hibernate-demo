@@ -32,6 +32,12 @@ public class PersonDAOImpl implements PersonDAO {
 				.save(person);
 	}
 	
+	public void delete(Person person) {
+		personSessionFactory
+			.getCurrentSession()
+			.delete(person);
+	}
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.personSessionFactory = sessionFactory;
 	}
