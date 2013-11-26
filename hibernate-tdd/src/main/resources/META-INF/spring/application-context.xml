@@ -21,13 +21,9 @@
 	
 	<jdbc:embedded-database id="personDataSource" type="HSQL"/>
 	
-	<bean id="personSessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<bean id="personSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="personDataSource"/>
-		<property name="mappingResources">
-			<list>
-				<value>jesg/dao/Person.hbm.xml</value>
-			</list>
-		</property>
+		<property name="packagesToScan" value="jesg.to"></property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
@@ -36,7 +32,8 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
 		<property name="sessionFactory" ref="personSessionFactory" />  
 	</bean>  
 </beans>

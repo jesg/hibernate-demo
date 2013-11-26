@@ -5,11 +5,11 @@ import javax.inject.Inject;
 import jesg.to.Person;
 
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Repository
 @Transactional(propagation=Propagation.REQUIRED)
 public class PersonDAOImpl implements PersonDAO {
 	

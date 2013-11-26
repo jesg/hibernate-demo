@@ -1,9 +1,20 @@
 package jesg.to;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Version;
+
+@Entity
+@NamedQuery(name="Person.findByFirstNameAndLastName", query="from Person s where s.firstName=:firstName AND s.lastName=:lastName")
 public class Person {
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String firstName;
 	private String lastName;
+	@Version
 	private Integer version = -1;
 	
 	public Long getId() {
