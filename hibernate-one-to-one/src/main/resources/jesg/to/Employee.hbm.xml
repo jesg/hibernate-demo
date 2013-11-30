@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="jesg.to">
+ 
+    <class name="Employee" >
+        <id name="id" >
+            <generator class="native" />
+        </id>
+        <one-to-one name="employeeBenefit" class="jesg.to.EmployeeBenefit"
+            cascade="save-update"></one-to-one>
+         
+        <property name="firstName" />
+        <property name="lastName" />
+        <property name="joinDate" type="date" />
+        <property name="cellPhone" />
+ 
+    </class>
+    
+</hibernate-mapping>
