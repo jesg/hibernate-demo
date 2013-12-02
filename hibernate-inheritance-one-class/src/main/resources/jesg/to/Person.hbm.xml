@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="jesg.to">
+ 
+    <class name="Person" discriminator-value="P">
+        <id name="id">
+            <generator class="native" />
+        </id>
+         
+        <discriminator column="DISCRIMINATOR" type="string" />
+         
+        <property name="firstName" />
+        <property name="lastName" />
+        
+        <subclass name="Employee" extends="Person" discriminator-value="E">
+        	<property name="joinDate" type="date" />
+        	<property name="cellPhone" />
+        </subclass>
+ 
+    </class>
+    
+</hibernate-mapping>
