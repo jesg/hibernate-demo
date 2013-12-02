@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="jesg.to">
+ 
+    <class name="Project" >
+ 
+        <id name="projectId" type="java.lang.Long" column="PROJECT_ID">
+            <generator class="native" />
+        </id>
+         
+        <property name="codeName" />
+ 
+        <set name="employees" table="EMPLYEE_PROJECT"
+                inverse="true" lazy="true" fetch="select">
+            <key column="EMPLOYEE_ID"/>
+            <many-to-many column="PROJECT_ID" class="Project" />
+        </set>
+                 
+    </class>
+</hibernate-mapping>

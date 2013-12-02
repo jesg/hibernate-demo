@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="jesg.to">
+ 
+    <class name="Employee" >
+        <id name="id" column="EMPLOYEE_ID">
+            <generator class="native" />
+        </id>
+         
+        <property name="firstName" />
+        <property name="lastName" />
+        <property name="joinDate" type="date" />
+        <property name="cellPhone" />
+        
+        <set name="projects" table="EMPLOYEE_PROJECT" inverse="false" lazy="true" fetch="select" cascade="all">
+        	<key column="EMPLOYEE_ID"/>
+        	<many-to-many column="PROJECT_ID" class="Project"/>
+        </set>
+ 
+    </class>
+    
+</hibernate-mapping>
